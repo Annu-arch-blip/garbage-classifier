@@ -1,31 +1,43 @@
 # garbage-classifier
 "An image classification project using deep learning to identify and sort different types of garbage — part of my goal to apply AI for environmental sustainability."
-## 📁 Dataset
 
-This project uses a dataset stored in Google Drive. Before running the notebook, mount your Drive in Colab and set the correct `data_path`, like this:
-
-```python
-data_path = '/content/drive/MyDrive/TrashType_Image_Dataset'🗑️ Garbage Classification with MobileNetV2
+🗑️ Garbage Classification with MobileNetV2
 A deep learning project to classify garbage into categories like cardboard, metal, glass, and more — using MobileNetV2 for lightweight performance and Google Colab for training and evaluation.
+
 📂 Dataset
 - 7 classes: cardboard, metal, glass, paper, plastic, trash, organic
 - Image size: 224x224
 - Augmentation applied to underrepresented classes (e.g. cardboard, trash)
+- 
 🧠 Model Architecture
 - Base model: MobileNetV2 (frozen for transfer learning)
 - Classifier: GlobalAveragePooling + Dense output
 - Optimizer: Adam, Loss: categorical_crossentropy
 - Trained for 10 epochs with early stopping
+- 
 🔍 Evaluation Results
-- Test Accuracy: XX%
+- Test Accuracy: 73%
 - Confusion Matrix:
-Confusion Matrix
-- Class-wise observations:
+- ### Confusion Matrix Summary
+
+| True Class | Most Confused With | Notes |
+|------------|--------------------|-------|
+| Cardboard  | Metal              | Often misclassified due to visual similarity |
+| Glass      | Metal              | 100% misclassified as metal |
+| Metal      | ✅ Correct          | Perfect predictions |
+| Paper      | Metal              | Weak separation |
+| Plastic    | Metal              | Needs improvement |
+| Trash      | Metal              | High confusion |
+
+
+Class-wise observations:
 - Cardboard and glass had initial misclassifications
 - Augmentation and retraining improved class performance
+
 📦 Deployment Plan
 - Possible deployment via Gradio web app
 - Lightweight enough for mobile deployment using TensorFlow Lite
+
 🚀 How to Run
 # Clone this repo
 git clone https://github.com/yourusername/garbage-classification.git
